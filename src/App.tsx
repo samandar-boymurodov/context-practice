@@ -35,9 +35,14 @@ export const App = () => {
             <ShowCounter color={color} />
             <Container>
                 <Child1>
-                    <Child2>
-                        <Child3 />
-                    </Child2>
+                    <Child2
+                        children={useMemo(
+                            () => (
+                                <Child3 />
+                            ),
+                            []
+                        )}
+                    />
                 </Child1>
             </Container>
         </CounterContext.Provider>
