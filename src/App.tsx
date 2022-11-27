@@ -21,6 +21,10 @@ export const App = () => {
         []
     );
 
+    const child3 = useMemo(() => <Child3 />, []);
+    const child2 = useMemo(() => <Child2 children={child3} />, [child3]);
+    const child1 = useMemo(() => <Child1 children={child2} />, [child2]);
+
     return (
         <CounterContext.Provider
             value={useMemo(
@@ -33,18 +37,7 @@ export const App = () => {
         >
             <ColorInput color={color} setColor={setColor} />
             <ShowCounter color={color} />
-            <Container>
-                <Child1>
-                    <Child2
-                        children={useMemo(
-                            () => (
-                                <Child3 />
-                            ),
-                            []
-                        )}
-                    />
-                </Child1>
-            </Container>
+            <Container>{child1}</Container>
         </CounterContext.Provider>
     );
 };
