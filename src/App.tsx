@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { CounterContext } from "./Context/CounterContext";
 import { Child1 } from "./Components/Child1";
 import { Child2 } from "./Components/Child2";
@@ -16,14 +16,20 @@ export const App = () => {
     const [counter, setCounter] = useState<number>(0);
     const [color, setColor] = useState<string>("green");
 
-    const incrementCounter = () => setCounter((prevState) => prevState + 1);
+    const incrementCounter = useCallback(
+        () => setCounter((prevState) => prevState + 1),
+        []
+    );
 
     return (
         <CounterContext.Provider
-            value={{
-                count: counter,
-                incrementCount: incrementCounter,
-            }}
+            value={useMemo(
+                () => ({
+                    count: counter,
+                    incrementCount: incrementCounter,
+                }),
+                [counter, incrementCounter]
+            )}
         >
             <ColorInput color={color} setColor={setColor} />
             <ShowCounter color={color} />
