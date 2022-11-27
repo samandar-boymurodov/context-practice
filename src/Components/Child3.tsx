@@ -16,4 +16,5 @@ export const Child3: FC = memo(() => {
         </div>
     );
 });
+
 Child3.displayName = "Child3";

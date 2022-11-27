@@ -5,6 +5,7 @@ import { Child2 } from "./Components/Child2";
 import { Child3 } from "./Components/Child3";
 import { ShowCounter } from "./Components/ShowCounter";
 import { Container } from "./Components/Container";
+import { ColorInput } from "./Components/ColorInput";
 
 // Component is rendered on 3 occasions
 // 1. State change
@@ -24,27 +25,7 @@ export const App = () => {
                 incrementCount: incrementCounter,
             }}
         >
-            <div>
-                <label htmlFor="green">Green</label>
-                <input
-                    type="radio"
-                    name={"color"}
-                    value={"green"}
-                    onChange={(e) => setColor(e.target.value)}
-                    checked={"green" === color}
-                    id={"green"}
-                />
-                <br />
-                <label htmlFor="red">Red</label>
-                <input
-                    type="radio"
-                    name={"color"}
-                    value={"red"}
-                    onChange={(e) => setColor(e.target.value)}
-                    checked={"red" === color}
-                    id={"red"}
-                />
-            </div>
+            <ColorInput color={color} setColor={setColor} />
             <ShowCounter color={color} />
             <Container>
                 <Child1>
